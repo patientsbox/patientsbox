@@ -52,7 +52,7 @@ export default class Patient extends Component {
           active={this.state.active}
           direction="up"
           containerStyle={{ }}
-          style={{ backgroundColor: '#4A6664', height : 50, width : 50 }}
+          style={{ color: '#4A6664', height : 50, width : 50 }}
           position="bottomRight"
           onPress = {()=>this.toRendezVous()}>
             <Icon name="add" onPress = {()=>this.toRendezVous()}/>

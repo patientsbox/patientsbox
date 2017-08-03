@@ -2,92 +2,81 @@ import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
+
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+
+
 
 import Agenda from '../components/agenda/index';
 
 import Notification from '../components/notification/index';
+
 import Message from '../components/message/index';
 
 import Patients from '../components/patient/index';
 
-import AppHeader from '../components/header/AppHeader';
-
-import {
-  Button,
-  Icon,
-  Item,
-  Footer,
-  FooterTab,
-  Label,
-  Header,
-  Text,
-  Left
-} from "native-base";
-
-
 import {TabNavigator, DrawerNavigator} from 'react-navigation';
+
+
+const ICON_STYLE = 27;
+
+function getIcon(name, tintColor){
+    return(
+      <MaterialIcons name={name} size={ICON_STYLE} color={tintColor} />
+    )
+}
+
 
 const TabsNavigation = TabNavigator (
   {
     Agenda : {
       screen : Agenda,
-      navigationOptions: ({navigation}) => ({
-        header : <AppHeader navigation={navigation}/>,
+      navigationOptions: {
         title : 'Agenda',
         tabBarLabel: 'Agenda',
-        tabBarIcon : ({ tintColor }) =>
-          <Image source={require('../img/agenda.png')}
-            style={[styles.icon, {tintColor}]}/>
-      })
+        tabBarIcon : ({ tintColor }) => getIcon('event', tintColor)
+      }
     },
     Patients : {
       screen :  Patients,
-      navigationOptions: ({navigation}) => ({
-        header : <AppHeader navigation={navigation}/>,
+      navigationOptions: {
         title : 'Patients',
         tabBarLabel: 'Patients',
-        tabBarIcon : ({ tintColor }) =>
-          <Image source={require('../img/person.png')}
-            style={[styles.icon, {tintColor}]}/>
-      })
+        tabBarIcon : ({ tintColor }) => getIcon('person', tintColor)
+      }
     },
     Notification : {
       screen :  Notification,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: {
         title : 'Notification',
-        header : <AppHeader navigation={navigation}/>,
         tabBarLabel: 'Notif.',
-        tabBarIcon : ({ tintColor }) =>
-          <Image source={require('../img/event.png')}
-            style={[styles.icon, {tintColor}]}/>
-      })
+        tabBarIcon : ({ tintColor }) => getIcon('notifications', tintColor)
+      }
     },
     Message : {
       screen :  Message,
-      navigationOptions: ({navigation}) => ({
-        header : <AppHeader navigation={navigation}/>,
+      navigationOptions: {
         title : 'Message',
         tabBarLabel: 'Message',
-        tabBarIcon : ({ tintColor }) =>
-          <Image source={require('../img/message.png')}
-            style={[styles.icon, {tintColor}]}/>
-      })
+        tabBarIcon : ({ tintColor }) => getIcon('message', tintColor)
+      }
     }
 
     },
 
   {
-    tabBarPosition : 'up',
+    
+    tabBarPosition : 'bottom',
     //swipeEnabled : false,
     animationEnabled  : false,
     tabBarOptions : {
       showIcon : true,
-      showLabel : false,
+      //showLabel : false,
       iconStyle : {
         padding : 0,
-        //marginBottom : 0,
         margin : 10
       },
       style : {
@@ -98,8 +87,12 @@ const TabsNavigation = TabNavigator (
       tabStyle : {
         marginTop : 0,
         marginBottom : 0,
-        paddingTop : 0,
+        paddingTop : 5,
         paddingBottom : 0
+      },
+      iconStyle :{
+        width: ICON_STYLE,
+        height: ICON_STYLE,
       },
       labelStyle : {
         padding : 0,
@@ -114,17 +107,22 @@ const TabsNavigation = TabNavigator (
         backgroundColor : 'transparent'
       }
     },
+    navigationOptions: ({navigation}) =>{
+      return {
+        headerRight : <TouchableOpacity style={{margin:0, marginLeft: 2, marginRight: 5, justifyContent:'center', alignItems:'center'}}><MaterialCommunityIcons color='#000' name='dots-vertical' size={30} /></TouchableOpacity>,
+        headerLeft : null,
+        headerStyle :{
+          elevation:2,
+        },
+        headerTitleStyle:{
+          color : '#000'
+        }
+      }
+    }
   }
 )
 
-
 export default TabsNavigation;
 
-const styles = StyleSheet.create({
-  icon: {
-      width: 25,
-      height: 25,
-      margin : 0,
-      padding : 0
-  }
-})
+
+

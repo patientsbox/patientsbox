@@ -22,13 +22,19 @@ import {
 
 import {LocaleConfig} from 'react-native-calendars';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 //import DateTimePicker from 'react-native-modal-datetime-picker';
 
 //import Calendrier from './calendrier';
 
 export default class Disponibilite extends Component {
+
+  static navigationOptions = ({navigation}) =>{
+      return {
+        title : "Ajout de rendez-vous",
+      }
+    }
 
   constructor(props) {
     super(props);
@@ -169,14 +175,14 @@ export default class Disponibilite extends Component {
     return (
       <View style={{backgroundColor : '#fff', flex : 1, paddingTop : 20, paddingLeft : 20}}>
 
-        <Item style={{borderColor : '#ccc'}}>
-           <Icon style = {{marginRight : 10}} color = '#4A6664' name='person' size={25}/>
+        <Item style={{borderBottomWidth : 1, borderColor : '#ccc'}}>
+           <MaterialIcons style = {{marginRight : 10}} color = '#4A6664' name='person' size={25}/>
            <Input onChangeText = {(patient)=>this.setState({patient})} placeholderTextColor = '#afb9bf' placeholder='Patient'/>
         </Item>
 
-        <ListItem style={{borderColor : '#ccc' , justifyContent : 'flex-start',  margin : 0, paddingTop : 10, paddingBottom : 10, paddingLeft : 0, marginLeft : 0}}>
+        <ListItem style={{borderBottomWidth : 1, borderColor : '#ccc' , justifyContent : 'flex-start',  margin : 0, paddingTop : 10, paddingBottom : 10, paddingLeft : 0, marginLeft : 0}}>
           <Left style={{flex : 0}}>
-            <Icon style = {{marginRight : 10}} color = '#4A6664' name='today' size={25}/>
+            <MaterialIcons style = {{marginRight : 10}} color = '#4A6664' name='today' size={25}/>
           </Left>
 
           <View style={{marginLeft : 7, flexDirection : 'row', flex : 1, justifyContent : 'space-between'}}>
@@ -184,21 +190,21 @@ export default class Disponibilite extends Component {
           </View>
         </ListItem>
 
-        <ListItem style={{borderColor : '#ccc' , justifyContent : 'flex-start',  margin : 0, paddingTop : 10, paddingBottom : 10, paddingLeft : 0, marginLeft : 0}}>
+        <ListItem style={{borderBottomWidth : 1, borderColor : '#ccc' , justifyContent : 'flex-start',  margin : 0, paddingTop : 10, paddingBottom : 10, paddingLeft : 0, marginLeft : 0}}>
           <Left style={{flex : 0}}>
-            <Icon style = {{marginRight : 10}} color = '#4A6664' name='timer' size={25}/>
+            <MaterialIcons style = {{marginRight : 10}} color = '#4A6664' name='timer' size={25}/>
           </Left>
           {this.renderTime()}
         </ListItem>
 
-        <Item style={{borderColor : '#ccc'}}>
-           <Icon style = {{marginRight : 10}} color = '#4A6664' name='location-on' size={25}/>
+        <Item style={{borderBottomWidth : 1, borderColor : '#ccc'}}>
+           <MaterialIcons style = {{marginRight : 10}} color = '#4A6664' name='location-on' size={25}/>
            <Input placeholderTextColor = '#afb9bf' placeholder='Ajouter un lieu'/>
         </Item>
 
-        <Item style={{borderColor : '#ccc'}}>
-             <Icon style = {{marginRight : 10}} color = '#4A6664' name='note' size={25}/>
-             <Input placeholderTextColor = '#afb9bf' placeholder='Ajouter une note' multiline={true}/>
+        <Item style={{borderBottomWidth : 1, borderColor : '#ccc',}}>
+             <MaterialIcons style = {{marginRight : 10}} color = '#4A6664' name='note' size={25}/>
+             <Input placeholderTextColor = '#afb9bf' placeholder='Ajouter une note' multiline={false} />
          </Item>
 
          <View style = {{marginTop : 50, flex : 1, flexDirection : 'row', justifyContent : 'space-between'}}>

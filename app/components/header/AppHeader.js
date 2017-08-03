@@ -3,8 +3,11 @@ import React, {Component} from 'react';
 import {
   Header,
   Text,
-  Left
+  Left,
+  Right
 } from "native-base";
+
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default class AppHeader extends Component {
   constructor(props) {
@@ -12,12 +15,15 @@ export default class AppHeader extends Component {
   }
   render(){
     return(
-      <Header style={{elevation : 0,  backgroundColor : '#4A6664', height : 35}}>
+      <Header style={{elevation : 2, borderBottomWidth: 1, borderColor : '#fff',  backgroundColor : '#fff', height : 45}}>
         <Left>
-          <Text style = {{color : '#fff', fontSize : 18}}>
+          <Text style = {{color : '#000', fontSize : 18}}>
             {this.props.navigation.state.key}
           </Text>
         </Left>
+        <Right>
+          <MaterialIcons name='settings' size={27}/>
+        </Right>
       </Header>
     )
   }

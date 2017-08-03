@@ -1,27 +1,31 @@
 {
-  "name": "Ekeneya",
-  "version": "0.0.1",
+  "name": "patientsbox",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
-  },
-  "dependencies": {
-    "native-base": "^2.1.5",
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.45.1",
-    "react-native-calendars": "^1.4.0",
-    "react-native-modal-datetime-picker": "^4.7.0",
-    "react-native-vector-icons": "^4.2.0",
-    "react-navigation": "^1.0.0-beta.11"
-  },
   "devDependencies": {
-    "babel-jest": "20.0.3",
-    "babel-preset-react-native": "1.9.2",
-    "jest": "20.0.4",
+    "react-native-scripts": "1.1.0",
+    "jest-expo": "~19.0.0",
     "react-test-renderer": "16.0.0-alpha.12"
   },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
   "jest": {
-    "preset": "react-native"
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^19.0.0",
+    "react": "16.0.0-alpha.12",
+    "react-native": "^0.46.1",
+    "native-base": "^2.1.5",
+    "react-native-calendars": "^1.4.0",
+    "react-native-modal-datetime-picker": "^4.7.0",
+    "react-navigation": "^1.0.0-beta.11"
+
   }
 }

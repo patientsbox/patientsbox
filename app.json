@@ -1,4 +1,5 @@
 {
-  "name": "PatientsBox",
-  "displayName": "PatientsBox"
+  "expo": {
+    "sdkVersion": "19.0.0"
+  }
 }

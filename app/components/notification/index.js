@@ -20,7 +20,7 @@ export default class Natification extends Component {
 
   render() {
     return(
-      <Container>
+      <Container style={styles.container}>
         <Text>Notification</Text>
       </Container>
     );
@@ -29,6 +29,7 @@ export default class Natification extends Component {
 
 const styles = StyleSheet.create({
   container : {
-    backgroundColor : '#65918E'
+    justifyContent : 'center',
+    alignItems : 'center'
   },
 })

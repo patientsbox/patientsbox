@@ -19,15 +19,17 @@ export default class Message extends Component {
 
   render() {
     return(
-      <Container>
+      <Container style={styles.container}>
         <Text>Message</Text>
       </Container>
     );
   }
 }
 
+
 const styles = StyleSheet.create({
   container : {
-    backgroundColor : '#65918E'
+    justifyContent : 'center',
+    alignItems : 'center'
   },
 })
