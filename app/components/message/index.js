@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 
 import {
-  Header,
   Content,
   Container,
   Body,
@@ -21,11 +20,6 @@ export default class Message extends Component {
   render() {
     return(
       <Container>
-        <Header style = {{backgroundColor : '#4A6664', }}>
-          <Body>
-            <Title>Message</Title>
-          </Body>
-        </Header>
         <Text>Message</Text>
       </Container>
     );

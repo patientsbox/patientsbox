@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
-import FichePatient from '../components/patient/fichepatient';
-import ListePatient from '../components/patient/listepatient';
+import Agenda from '../components/agenda/index';
+import RendezVous from '../components/agenda/rendezvous';
+import Visualisation from '../components/agenda/visualisation';
 
 import {StackNavigator} from 'react-navigation';
 
-export const PatientNavigation = StackNavigator (
+export const AgendaNavigation = StackNavigator (
     {
-      ListePatient : { screen : ListePatient},
-      FichePatient : { screen : FichePatient},
+      Agenda : { screen : Agenda},
+      RendezVous : { screen : RendezVous},
+      Visualisation : {screen : Visualisation}
     },
     {
       navigationOptions  : {
@@ -28,7 +30,7 @@ export default class Nav extends Component {
 
   render() {
     return(
-      <PatientNavigation />
+      <AgendaNavigation />
     );
   }
 }

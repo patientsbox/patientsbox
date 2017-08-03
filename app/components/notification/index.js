@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 
 import {
-  Header,
   Content,
   Container,
   Body,
@@ -16,16 +15,12 @@ import {
 export default class Natification extends Component {
 
   static navigationOptions = {
+    title : 'ooo'
   }
 
   render() {
     return(
       <Container>
-        <Header style = {{backgroundColor : '#4A6664', }}>
-          <Body>
-            <Title>Notification</Title>
-          </Body>
-        </Header>
         <Text>Notification</Text>
       </Container>
     );

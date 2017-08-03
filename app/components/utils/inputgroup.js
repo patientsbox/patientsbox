@@ -18,9 +18,13 @@ export default class inputGroup extends Component {
     const marge = this.props.marginBottom ?  this.props.marginBottom :  20;
     return (
       <View style = {[styles.inputGroup, {marginBottom : marge}]}>
-          <View style = {styles.inputGroupIcon}>
-            <Image style={{width: 25, height: 25,}} source = {this.props.source} />
-          </View>
+          {this.props.source ?
+            <View style = {styles.inputGroupIcon}>
+              <Image style={{width: 25, height: 25,}} source = {this.props.source} />
+            </View>
+            :
+            <Text></Text>
+          }
           <View style = {styles.inputGroupInput}>
             <TextInput
               style={styles.input}

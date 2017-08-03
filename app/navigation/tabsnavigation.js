@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   Image
 } from 'react-native';
 
 import Agenda from '../components/agenda/index';
+
 import Notification from '../components/notification/index';
 import Message from '../components/message/index';
-import PatientNavigation from './patientnavigation';
+
+import Patients from '../components/patient/index';
+
+import AppHeader from '../components/header/AppHeader';
 
 import {
   Button,
@@ -17,7 +20,10 @@ import {
   Item,
   Footer,
   FooterTab,
-  Label
+  Label,
+  Header,
+  Text,
+  Left
 } from "native-base";
 
 
@@ -27,51 +33,62 @@ const TabsNavigation = TabNavigator (
   {
     Agenda : {
       screen : Agenda,
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
+        header : <AppHeader navigation={navigation}/>,
+        title : 'Agenda',
         tabBarLabel: 'Agenda',
         tabBarIcon : ({ tintColor }) =>
           <Image source={require('../img/agenda.png')}
             style={[styles.icon, {tintColor}]}/>
-      }
+      })
     },
-    Patient : {
-      screen :  PatientNavigation,
-      navigationOptions: {
+    Patients : {
+      screen :  Patients,
+      navigationOptions: ({navigation}) => ({
+        header : <AppHeader navigation={navigation}/>,
+        title : 'Patients',
         tabBarLabel: 'Patients',
         tabBarIcon : ({ tintColor }) =>
           <Image source={require('../img/person.png')}
             style={[styles.icon, {tintColor}]}/>
-      }
+      })
     },
     Notification : {
       screen :  Notification,
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
+        title : 'Notification',
+        header : <AppHeader navigation={navigation}/>,
         tabBarLabel: 'Notif.',
         tabBarIcon : ({ tintColor }) =>
           <Image source={require('../img/event.png')}
             style={[styles.icon, {tintColor}]}/>
-      }
+      })
     },
     Message : {
       screen :  Message,
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
+        header : <AppHeader navigation={navigation}/>,
+        title : 'Message',
         tabBarLabel: 'Message',
         tabBarIcon : ({ tintColor }) =>
           <Image source={require('../img/message.png')}
             style={[styles.icon, {tintColor}]}/>
-        }
-      }
+      })
+    }
+
     },
+
   {
-    tabBarPosition : 'bottom',
-    swipeEnabled : false,
+    tabBarPosition : 'up',
+    //swipeEnabled : false,
     animationEnabled  : false,
     tabBarOptions : {
       showIcon : true,
+      showLabel : false,
       iconStyle : {
         padding : 0,
-        marginBottom : 0,
-        marginTop : 3
+        //marginBottom : 0,
+        margin : 10
       },
       style : {
         backgroundColor : '#4A6664',
@@ -101,23 +118,12 @@ const TabsNavigation = TabNavigator (
 )
 
 
-export default class HomeNav extends Component {
-
-  static navigationOptions = {
-    header : null
-  }
-
-  render() {
-    return(
-      <TabsNavigation />
-    );
-  }
-}
+export default TabsNavigation;
 
 const styles = StyleSheet.create({
   icon: {
-      width: 20,
-      height: 20,
+      width: 25,
+      height: 25,
       margin : 0,
       padding : 0
   }

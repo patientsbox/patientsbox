@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
 import {Agenda, LocaleConfig} from 'react-native-calendars';
@@ -16,11 +17,45 @@ LocaleConfig.locales['fr'] = {
 
 LocaleConfig.defaultLocale = 'fr';
 
+const rendezvous = {
+  '2017-05-16' : [
+    {
+      patient : 'Diawara Zakaridia',
+      start : '08:00',
+      end : '09:00'
+    },
+    {
+      patient : 'Coulibary Karim',
+      start : '09:10',
+      end : '10:00'
+    },
+    {
+      patient : 'Traore Awa',
+      start : '10:00',
+      end : '12:00'
+    }
+  ],
+  '2017-06-10' : [
+    {
+      patient : 'Traore Awa',
+      start : '10:00',
+      end : '12:00'
+    },
+  ],
+  '2017-07-09' : [
+    {
+      patient : 'Ouattara Moussa',
+      start : '10:00',
+      end : '12:00'
+    }
+  ]
+};
 export default class AgendaScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {}
+      items: {},
+      rendezvous : rendezvous
     };
   }
 
@@ -65,15 +100,28 @@ export default class AgendaScreen extends Component {
       for (let i = -15; i < 85; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
+        //console.log(strTime);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 5);
-          for (let j = 0; j < numItems; j++) {
+
+          if(this.state.rendezvous[strTime]){
+            const planning = this.state.rendezvous[strTime];
+            //alert(planning);
+            for (var i = 0; i < planning.length; i++) {
+              //planning[i]
+              this.state.items[strTime].push({
+                planning : planning[i]
+              });
+            }
+          }
+
+          //const numItems = Math.floor(Math.random() * 5);
+          /*for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
               name: 'Item for ' + strTime +' / '+j,
               height: Math.max(50, Math.floor(Math.random() * 150))
             });
-          }
+          }*/
         }
       }
       //console.log(this.state.items);
@@ -86,15 +134,20 @@ export default class AgendaScreen extends Component {
     // console.log(`Load Items for ${day.year}-${day.month}`);
   }
 
-  renderItem(item) {
+  renderItem(planningItem) {
     return (
-      <View style={[styles.item, {/*height: item.height*/}]}><Text>{item.name}</Text></View>
+      <TouchableOpacity
+        onPress={()=>this.props.toVisualisation()}
+        style={[styles.item]}>
+          <Text>{planningItem.planning.start} à {planningItem.planning.end} </Text>
+          <Text>{planningItem.planning.patient}</Text>
+      </TouchableOpacity>
     );
   }
 
   renderEmptyDate() {
     return (
-      <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
+      <View style={styles.emptyDate}><Text>Pas de rdv</Text></View>
     );
   }
 
